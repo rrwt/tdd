@@ -33,10 +33,13 @@ class NewVisitorTest(LiveServerTestCase):
                 time.sleep(0.2)
     
     def enter_text_inputbox(self, text):
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.get_inputbox()
 
         inputbox.send_keys(text)
         inputbox.send_keys(Keys.ENTER)
+    
+    def get_inputbox(self):
+        return self.browser.find_element_by_id('id_new_item')
 
     def test_can_start_a_list_and_retrieve_it_later(self):
         self.browser.get(self.live_server_url)
@@ -73,3 +76,25 @@ class NewVisitorTest(LiveServerTestCase):
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
         self.assertIn('Buy Milk', page_text)
+
+    def test_layout_and_styling(self):
+        self.browser.get(self.live_server_url)
+        self.browser.set_window_size(1024, 768)
+
+        inputbox = self.get_inputbox()
+
+        self.assertAlmostEqual(
+            inputbox.location['x'] + inputbox.size['width'] / 2,
+            512,
+            delta=10
+        )
+
+        self.enter_text_inputbox('testing')
+        self.check_for_row_in_list_table('1: testing')
+        
+        inputbox = self.get_inputbox()
+        self.assertAlmostEqual(
+            inputbox.location['x'] + inputbox.size['width'] / 2,
+            512,
+            delta=10
+        )
