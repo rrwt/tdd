@@ -6,7 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException
 
 
-MAX_WAIT = 10
+MAX_WAIT = 4
 
 
 class NewVisitorTest(LiveServerTestCase):
@@ -27,6 +27,7 @@ class NewVisitorTest(LiveServerTestCase):
                 return
             except (AssertionError, WebDriverException) as e:
                 if time.time() - start_time > MAX_WAIT:
+                    print(self.browser)
                     raise e
                 
                 time.sleep(0.2)
@@ -56,12 +57,10 @@ class NewVisitorTest(LiveServerTestCase):
         self.enter_text_inputbox('Buy peacock feathers')
         self.check_for_row_in_list_table('1: Buy peacock feathers')
 
-        first_list_url = self.browser.current_url
-        self.assertRegex(first_list_url, '/lists/.+')
-
+        self.assertRegex(self.browser.current_url, '/lists/.+')
         self.browser.quit()
-        self.browser = webdriver.Firefox()
 
+        self.browser = webdriver.Firefox()
         self.browser.get(self.live_server_url)
 
         page_text = self.browser.find_element_by_tag_name('body').text
