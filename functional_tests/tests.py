@@ -1,6 +1,6 @@
 import time
 
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException
@@ -9,7 +9,7 @@ from selenium.common.exceptions import WebDriverException
 MAX_WAIT = 4
 
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
     
@@ -86,12 +86,13 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width'] / 2,
             512,
-            delta=10
+            delta=10,
+            msg=f'{inputbox.location["x"]}, {inputbox.size["width"]/2}'
         )
 
         self.enter_text_inputbox('testing')
         self.check_for_row_in_list_table('1: testing')
-        
+
         inputbox = self.get_inputbox()
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width'] / 2,
