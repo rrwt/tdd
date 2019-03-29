@@ -25,7 +25,10 @@ SECRET_KEY = '491c_4u308#t#2u%l93@-!+tpb7$f2$r)+6ceq=a$-*b%l4ci_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    'rohitr.pythonanywhere.com'
+]
 
 
 # Application definition
