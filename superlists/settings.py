@@ -26,8 +26,7 @@ SECRET_KEY = '491c_4u308#t#2u%l93@-!+tpb7$f2$r)+6ceq=a$-*b%l4ci_'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost',
-    'rohitr.pythonanywhere.com'
+    os.environ.get('STAGING_SERVER') if os.environ.get('STAGING_SERVER') else 'localhost'
 ]
 
 
