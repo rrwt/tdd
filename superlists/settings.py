@@ -25,13 +25,10 @@ SECRET_KEY = '491c_4u308#t#2u%l93@-!+tpb7$f2$r)+6ceq=a$-*b%l4ci_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
 ALLOWED_HOSTS = [
-    os.environ.get('STAGING_SERVER') if os.environ.get('STAGING_SERVER') else 'localhost'
+    'localhost',
+    'rohitr.pythonanywhere.com'
 ]
-=======
-ALLOWED_HOSTS = []
->>>>>>> parent of 02eec69... added allowed hosts'
 
 
 # Application definition
