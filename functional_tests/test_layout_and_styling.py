@@ -16,7 +16,7 @@ class LayoutAndStylingTest(FunctionalTest):
         )
 
         self.enter_text_inputbox('testing')
-        self.check_for_row_in_list_table('1: testing')
+        self.wait_for_row_in_list_table('1: testing')
 
         inputbox = self.get_inputbox()
         self.assertAlmostEqual(
