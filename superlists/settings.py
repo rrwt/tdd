@@ -22,7 +22,9 @@ if 'DJANGO_DEBUG_FALSE' in os.environ:
 else:
     SECRET_KEY = '491c_4u308#t#2u%l93@-!+tpb7$f2$r)+6ceq=a$-*b%l4ci_'
     DEBUG = True
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = [
+        'rohitr.pythonanywhere.com'
+    ]
 
 
 # Application definition
