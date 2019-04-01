@@ -172,9 +172,3 @@ class ListViewTest(TestCase):
         self.assertContains(response, expected_error)
         self.assertTemplateUsed(response, 'list.html')
         self.assertEqual(Item.objects.all().count(), 1)
-    
-    def test_form_save(self):
-        list_ = List.objects.create()
-        form = ExistingListItemForm(for_list=list_, data={'text': 'hi'})
-        new_item = form.save()
-        self.assertEqual(new_item, Item.objects.all()[0])
